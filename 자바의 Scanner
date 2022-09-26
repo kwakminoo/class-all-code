@@ -1,0 +1,23 @@
+package programming.basic;
+
+import java.util.Scanner; //scanner을 편히 쓰기 위해 import시킴
+
+public class HelloScanner{
+	
+	public static void main(String[] args) {
+		
+		int age;
+		//System.out.println(age);
+		
+		System.out.println("당신의 나이를 입력해 주세.");
+		
+		Scanner scanner = new Scanner(System.in); //scanner을 쓸려면 풀 문장을 쓰던가 아니면 improt 해야함
+		
+		age = scanner.nextInt();
+		
+		System.out.println("당신의 나이는" + age + "입니다.");
+		
+	}
+	
+}
+
