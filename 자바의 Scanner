@@ -1,23 +1,31 @@
 package programming.basic;
 
-import java.util.Scanner; //scanner을 편히 쓰기 위해 import시킴
+import java.util.Scanner;
 
 public class HelloScanner{
 	
 	public static void main(String[] args) {
 		
 		int age;
-		//System.out.println(age);
+		String name;
+		//System.out.println(age);1
 		
 		System.out.println("당신의 나이를 입력해 주세.");
 		
 		Scanner scanner = new Scanner(System.in); //scanner을 쓸려면 풀 문장을 쓰던가 아니면 improt 해야함
 		
-		age = scanner.nextInt();
+		age = scanner.nextInt(); //정수로 받을 거면 nextInt
+
+		System.out.println("이름을 입력해 주세.");
+
+		name = scanner.next(); //문자열로 받을거면 그냥 next
 		
-		System.out.println("당신의 나이는" + age + "입니다.");
+		if (age < 1) {
+			System.err.println("웁쓰...");
+		} else {
 		
+		System.out.println(name + "님의 나이는" + age + "입니다.");
+		}
 	}
 	
 }
-
