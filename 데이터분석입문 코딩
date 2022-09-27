@@ -1,0 +1,26 @@
+import matplotlib.pyplot as plt
+import csv
+
+f = open('gender_0922.csv')
+data = csv.reader(f)
+
+m = []
+f = []
+pie = []
+n = input("찾고 싶은 지역의 이름을 알려주세요")
+
+for row in data:
+    if '구로구' in row[0]:
+        m.append(int(row[1].replace(',', '')))
+        print(m)
+    if '구로구' in row[0]:
+        f.append(int(row[104].replace(',', '')))
+        print(f)
+        break
+        
+pie.append(m)
+pie.append(f)
+name = ['남자', '여자']   
+plt.rc('font', family='Malgun Gothic')    
+plt.pie(pie, labels=name, autopct='%.1f%%')
+plt.show()    
