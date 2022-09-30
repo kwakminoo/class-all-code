@@ -43,5 +43,14 @@ pageEncoding="EUC-KR"%>
 
 <%
 	String name = request.getParameter("name");
-	String studentNum = request.getParameter
+	String studentNum = request.getParameter("studentNum");
+	String sex = request.getParameter("sex");
+	String country = request.getParameter("country");
+	
+	if (sex.equalsIgnoreCase("man")){
+			sex = "남자"}
+	else{
+			sex = "여자"
+	}
 %>
+
