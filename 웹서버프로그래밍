@@ -48,9 +48,18 @@ pageEncoding="EUC-KR"%>
 	String country = request.getParameter("country");
 	
 	if (sex.equalsIgnoreCase("man")){
-			sex = "남자"}
+			sex = "남자";}
 	else{
-			sex = "여자"
+			sex = "여자";
 	}
-%>
+%> 
 
+<h2>학생 정보 입력 결과</h2>
+
+성명: <%= name%><p>
+학번: <%= studentNum%><p>
+성별: <%= sex%><p>
+국적: <%= country%><p>
+
+</body>
+</html>
