@@ -1,0 +1,57 @@
+import numpy as np
+
+def step_function(z, T):
+  if z > T:
+    y = 1
+  elif z == T:
+    y = 0
+  elif z < T:
+    y = -1
+   
+  return y
+  
+f = open('pattern_Training_14.txt','r')
+
+T = 0   #임계치
+N = 5   #출력층(뉴런의 총 개수)
+eta = 1   
+
+x_train, y_train = [], []
+while True:
+  line = f.readline().replace(" ", "").replace("\n", "")
+
+  if len(line) == 0:
+    break
+    
+  data = list(line)
+  
+  for i in range(len(data)):
+    if data[i] == '0'       #패턴 양자화 - 검은색
+      data[i] = 1             
+    elif data[i] == '1':    #패턴 양자화 - 흰색
+      data[i] = -1
+      
+  x_train.appand(data[0:63])   #pattern
+  y_train.append(data[63:])    #label
+  
+f.close() 
+
+w = np.random.rand(63, N)
+while True:
+  flag = 0
+  for j in range(len(x_train)):
+  y_result = []
+  for i in range(N):
+    z = np.dot(np.array(x_train[j]), w[:i]. T)
+    y_result.append(step_function(z, T))
+    
+  #출력층 각 뉴런의 출력값과 목표값과 비교
+  for i in range(N):   
+    if y_result[i] != y_train[j][i]:
+      flag = 1
+      #출력과 목표값이 서로 다르므로 가중치 업데이트
+      delta_w = eta*(y_train[j][i] - y_train[i]) * np.array(x_train[j])
+      w[:, i] = w[:, i] + data_w.T
+      
+if flag == 0:
+  break
