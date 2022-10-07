@@ -1,3 +1,18 @@
+서버 파일 새로 만들대 => 바탕화면에 새폴더 만들고 => 거기를 로컬로 지정 => 새로 만들때 none을 tomcat 9.0으로 변경 => apach.tomcat 9.0.64... => 4.0
+코드 중간에 <%= ...%> 에서 뒤 %>가 빨간 라인이 떠도 일단 실행을 해봐 해보고 안돼면 고치고 돼면 그냥 둬 왠진 몰라도 가끔 
+------------------------------------------------------------------------
+<!DOCTYPE html Public "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+----------------------------------------------------------------------------
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+--------------------------------------------------------------------------
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http:
 //www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -63,3 +78,207 @@ pageEncoding="EUC-KR"%>
 
 </body>
 </html>
+--------------------------------------------------------------------------
+<!DOCTYPE html Public "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>예제 getrequest</title>
+</head>
+<body>
+
+<h2>메소드 post 방식에서 한글 처리</h2>
+
+<form method="get" action="getrequest.jsp">
+	한글 성명:<input type="text" name="korname"><p>
+	영어 성명:<input type="text" name="engname"><p>
+	<input type="submit" value="보내기">
+</form>
+
+</body>
+</html>
+-------------------------------------------------------------------------------
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>JSP 예제 getrequest.jsp</title>
+</head>
+<body>
+
+<h2>메소드 get 방식에서 한글 처리</h2>
+<hr>
+한글 성명: <%= request.getParameter("korname") %><p>
+영문 서명: <%= request.getParameter("engname") %><p>
+
+</body>
+</html>
+-------------------------------------------------------------------------------
+<!DOCTYPE html Public "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>예제 sendredirect</title>
+</head>
+<body>
+
+<h2>검색할 단어를 입력하세요.</h2>
+
+<form method="get" action="sendredirect.jsp">
+	검색키워드 : <input type="text" name="word"><p>
+	<input type="submit" value="보내기">
+	<input type="reset" value="취소">
+</form>
+
+</body>
+</html>
+-------------------------------------------------------------------------------
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>예제 sendredirect.jsp</title>
+</head>
+<body>
+
+<%
+	String URL = "http://search.naver.com/search.naver?where=nexearch";
+	String keyword = request.getParameter("word");
+	URL += "&" + "query=" + keyword;
+	response.sendRedirect(URL);
+%>
+
+</body>
+</html>
+--------------------------------------------------------------------------------
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>JSP 예제 out.jsp</title>
+</head>
+<body>
+
+	<%
+		out.println("이 부분은 출력되지 않습니다.");
+		out.clear();
+	%>
+	
+	<h2>현재 페이지의 출력 버퍼 상태</h2><p>
+	
+	초기 출력 버퍼 크기 : <%=out.getBufferSize() %>byte<p>
+	남은 출력 버퍼 크기 : <%=out.getRemaining() %>byte<p>
+	autoFlush : <%=out.isAutoFlush() %><p>
+
+</body>
+</html>
+----------------------------------------------------------------------------------
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>예제 autoflush.jsp</title>
+</head>
+<body>
+
+	<%@ page autoFlush="false" buffer="1kb" %>
+	<h2>현재 autoFlush = <%=out.isAutoFlush() %></h2><p>
+	
+	<%
+		for (int i = 1; i < 25; i++){
+			out.println("남은 출력 버퍼 크기(out.getRemaining()) : " + out.
+getRemaining() + "<br>");
+			//autoFlush가 false면 알아서 버퍼를 출력해야 한다.
+			if (out.getRemaining() < 50){
+				out.println("<br>");
+				out.flush();
+			}
+		}
+	%>
+	
+	<hr>
+	초기 출력 버퍼 크기: <%=out.getBufferSize() %>byte<br>
+	남은 출력 버퍼 크기: <%=out.getRemaining() %> byte
+
+</body>
+</html>
+-----------------------------------------------------------------------------------------
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>JSP 예제 application.jsp</title>
+</head>
+<body>
+
+<%! int count = 0; %>
+
+<%
+	String scount = (String) application.getAttribute("count");
+	
+	if (scount != null){
+		count = Integer.parseInt(scount);
+		} else {
+			count = 0;
+		}
+	
+	application.setAttribute("count", Integer.toString(++count));
+	application.log("현재까지 조회 수 : " + count);
+	
+	
+%>
+	서버 컨테이너 정보 : <%= application.getServerInfo() %><p>
+	현재까지 조회 수 : <%= count %>
+	
+</body>
+</html>
+------------------------------------------------------------------------------------
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<%@ page autoFlush="false" buffer="1kb" errorPage="error.jsp" %>
+	
+	<%
+		for (int i = 1; i < 25; i ++){
+			out.println("남은 출력 버퍼 크기(out.getRemaining()) : " + out.
+getRemaining() + "<br>");
+		}
+	%>
+
+</body>
+</html>
+---------------------------------------------------------------------------------------
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h2>pageContext 예제</h2>
+	
+	<% pageContext.getOut().println("include.html을 추가"); %>
+	<hr>
+	<% pageContext.include("include.html"); %>
+
+</body>
+</html>
+-------------------------------------------------------------------------------------------
+
