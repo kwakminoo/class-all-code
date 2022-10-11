@@ -24,3 +24,38 @@ name = ['남자', '여자']
 plt.rc('font', family='Malgun Gothic')    
 plt.pie(pie, labels=name, autopct='%.1f%%')
 plt.show()    
+---------------------------------------------
+[6주차]
+ <h1>문제1<h>
+import csv
+
+f = open('subwayfee_08.csv')
+data = csv.reader(f)
+next(data)
+
+
+
+mx = 0
+rate = 0
+mx_station = ""
+
+
+
+for row in data :
+    for i in range(4,8) :
+        row[i] = int(row[i].replace(',',''))
+    if row[6] != 0 and (row[4]+row[6]) > 100000 :
+        rate = row[4] / (row[4]+row[6])
+        if rate > mx :
+            mx = rate
+            a = row[4]
+            b = row[6]
+            mx_station = row[3]
+            h = row[1]
+
+
+print("역이름: ", mx_station)
+print("호선명: ", h)
+print("유임 승차 비율 = 유임승차 인원수 / (유임승차 인원수 + 무임승차 인원수) ")
+print(round(mx,2),' = ',"(", a, " / ", b,")" )
+
