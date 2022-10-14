@@ -281,4 +281,183 @@ getRemaining() + "<br>");
 </body>
 </html>
 -------------------------------------------------------------------------------------------
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>JSP 예제 : test.jsp</title>
+</head>
+<body>
+	<h2> include 액션 태그 </h2>
+	test.jsp 파일 시작 부분입니다.<br>
+	include 태그는 페이지 속성 파일 결과를 태그 위치에 삽입합니다.<br>
+	
+	<jsp:include page = "sub.jsp" />
+	
+	test.jsp 파일 끝 부분입니다.
+</body>
+</html>
+-------------------------------------------------------------------------------------------
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>JSP 예제 : sub.jsp</title>
+</head>
+<body>
 
+	<hr><font color = red>
+	이 부분은 include 태그가 있던 자리로 sub.jsp의 결과가 삽입됩니다.
+	</font><hr>
+
+</body>
+</html>
+
+-------------------------------------------------------------------------------------------
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>JSP 예제 : includedirective.jsp</title>
+</head>
+<body>
+
+	<% int i = 12; %>
+	<% // int n = 365; %>
+	<% int days = 365; %>
+	1년은 <%=i %>달 입니다.
+	<%@ include file ="includesub.jsp" %>
+	1년은 <%=days %>입니다.
+</body>
+</html>
+-------------------------------------------------------------------------------------------
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<% int n = 52; %>
+	<hr><font color=red>
+	1 년은 <%=n %>주 입니다.
+	</font><hr>
+</body>
+</html>
+-------------------------------------------------------------------------------------------
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>forward 액션 태그 </h2>
+	forwardmain.jsp 파일 시작부분입니다.<br>
+	forward 태그는 페이지 속성 파일로 제어를 넘깁니다.<br>
+	forwardmain.jsp 페이지의 출력 내용은 하나도 출력되지 않습니다.<br>
+	
+	<jsp:forward page="forwardsub.jsp" />
+	
+	forwardmain.jsp 파일 끝 부분입니다.
+	
+</body>
+</html>
+-------------------------------------------------------------------------------------------
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<hr><font color=red>
+	이전에 있던 forwardmain.jsp의 출력이 나오지 않습니다.<br>
+	이 부분이 forward 태그가 있던 자리로 fowardsub.jsp의 결과만 출력됩니다.<br>
+	이후에 있던 forwardmain.jsp의 출력이 나오지 않습니다.
+	</font><hr>
+</body>
+</html>
+-------------------------------------------------------------------------------------------
+<!DOCTYPE html Public "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>로그인 </h2>
+	<form method="post" action="login.jsp">
+	아이디: <input type="text" name="userid"><br>
+	암호: <input type="text" name="passward"><br>
+	<input type="submit" value="로그인">
+	<input type="reset" value="다시입력">
+	</form>
+</body>
+</html>
+-------------------------------------------------------------------------------------------
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>로그인 예제</h2>
+	<%
+	request.setCharacterEncoding("euc-kr");
+	String userid = request.getParameter("userid");
+	String passward = request.getParameter("passward");
+	%>
+	
+	<%
+	if (userid.equals("")) {
+	%>
+	<jsp:include page="loginhandle.jsp" >
+		<jsp:param name="userid" value="guest" />
+		<jsp:param name="passward" value="anonymous" />
+	</jsp:include>
+	<%
+	} else {
+	%>
+	<jsp:include page="loginhandle.jsp" />
+	<%
+	}
+	%>
+</body>
+</html>
+-------------------------------------------------------------------------------------------
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<%
+	request.setCharacterEncoding("euc-kr");
+	String userid = request.getParameter("userid");
+	String passward = request.getParameter("passward");
+	%>
+	<%
+	if (userid.equals("guest")) {
+		out.println("회원이 아니시군요. 반갑습니다.<br>");
+		out.println("다음으로 로그인 하세요.<hr>");
+	} else 
+		out.println("회원님, 반갑습니다.<hr>");
+	}
+	%>
+	아이디 : <%=userid %>,
+	암호 : <%=passward %>
+</body>
+</html>
+-------------------------------------------------------------------------------------------
