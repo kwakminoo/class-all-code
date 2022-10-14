@@ -461,3 +461,74 @@ getRemaining() + "<br>");
 </body>
 </html>
 -------------------------------------------------------------------------------------------
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>쿠키 만들기 예제</h1>
+	<hr>
+	Cookie cookie = new Cookie("user", "kang"); <br>
+	cookie.setMaxAge(2*60); //초 단위 : 2분 <br>
+	response.addCookie(cookie);
+	<%
+		Cookie cookie = new Cookie("user", "kang");
+		cookie.setMaxAge(2*60); //초 단위 2분
+		response.addCookie(cookie);
+		%>
+		<hr><a href=addtimecookie.jsp > 현재 접속 시간을 쿠키로 추가</a>
+</body>
+</html>
+-------------------------------------------------------------------------------------------
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>현재 시간을 쿠키로 저장</h1>
+	<hr>
+	String now = new java.util.Date().toString(); <br>
+	Cookie cookie = new Cookie("lastconnect", now); <br>
+	cookie.setMaxAge(10); //초 단위 10초 <br>
+	response.addCookie(cookie); <br>
+	<%
+	String now = new java.util.Date().toString(); 
+	Cookie cookie = new Cookie("lastconnect", now);
+	cookie.setMaxAge(10); //초 단위 10초 
+	response.addCookie(cookie); 
+	%>
+	<hr><a href=getcookies.jsp >쿠키조회</a>
+</body>
+</html>
+-------------------------------------------------------------------------------------------
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>쿠키 조히 예제</h1>
+	<hr>
+	<%
+		Cookie[] cookies = request.getCookies();
+		if (cookies == null) {
+			out.println("쿠키가 없습니다.");
+		} else {
+			/*
+			for (int i=0; i<cookies.length; ++i) {
+				out.println("쿠키 이름(name) : " + cookies[i].getName() + ", ");
+				out.println("쿠키 값(value) : " + c.getValue() + "<br>");
+			}
+			*/
+			for %>
+</body>
+</html>
+-------------------------------------------------------------------------------------------
