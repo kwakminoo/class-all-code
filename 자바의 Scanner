@@ -30,11 +30,11 @@ public class HelloScanner{
 	
 }
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-package DY1017;
+package 1017;
 
 import java.util.Scanner;
 
-public class fuck {
+public class test {
 	
 	public static void main(String[] args) {
 		
@@ -61,10 +61,11 @@ public class fuck {
 		//all pass [equals]룰 사용해야 pass가 들어간 rapperN의 값을 알아내어 조건을 완성시킬 수 있다.
 		if (rapper1.equals("pass") && rapper2.equals("pass") && rapper3.equals("pass") && rapper4.equals("pass")) {
 			System.out.println("!!! all pass !!!");
-		}
+		} else {
 		
 		if (rapper1.equals("pass") || rapper2.equals("pass") || rapper3.equals("pass") || rapper4.equals("pass")) {
 			System.out.println("pass !!!");
+			}
 		}
 		
 		if (rapper1.equals("fail") && rapper2.equals("fail") && rapper3.equals("fail") && rapper4.equals("fail")) {
@@ -81,3 +82,58 @@ public class fuck {
 	}
 	
 }
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+package dy1017;
+
+import java.util.Scanner;
+
+public class test2 {
+	
+	public static void main(String arg[]) {
+
+		int value, years = 0;
+		int days = 0;
+
+		Scanner scan = new Scanner(System.in);
+
+		System.out.println("일수를 알고싶은 년도를 입력하세요");
+		years = scan.nextInt();
+		System.out.println("일수를 알고싶은 월을 입력하세요");
+		value = scan.nextInt();
+
+		switch (value) {
+		case 1:
+		case 3:
+		case 5:
+		case 7:
+		case 8:
+		case 10:
+		case 12:
+			days = 31;
+			break;
+			
+		case 4:
+		case 6:
+		case 9:
+		case 11:
+			days = 30;
+			break;
+			
+		case 2:
+			days = 28;
+			break;
+
+		default:
+
+			System.out.println("월을 잘못 입력하셨습니다");
+
+			break;
+
+		}
+
+		System.out.println("입력하신 월의 날수는 " + days + " 입니다");
+
+	}
+
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
