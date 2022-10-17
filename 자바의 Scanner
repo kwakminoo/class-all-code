@@ -29,3 +29,55 @@ public class HelloScanner{
 	}
 	
 }
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+package DY1017;
+
+import java.util.Scanner;
+
+public class fuck {
+	
+	public static void main(String[] args) {
+		
+		System.out.println("show me the monney!!");
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		
+		
+		String rapper1;
+		String rapper2;
+		String rapper3;
+		String rapper4;
+		
+		System.out.println("심사위원1의 평가 입력: ");
+		rapper1 = scanner.next();
+		System.out.println("심사위원2의 평가 입력: ");
+		rapper2 = scanner.next();
+		System.out.println("심사위원3의 평가 입력: ");
+		rapper3 = scanner.next();
+		System.out.println("심사위원4의 평가 입력: ");
+		rapper4 = scanner.next();
+		
+		//all pass [equals]룰 사용해야 pass가 들어간 rapperN의 값을 알아내어 조건을 완성시킬 수 있다.
+		if (rapper1.equals("pass") && rapper2.equals("pass") && rapper3.equals("pass") && rapper4.equals("pass")) {
+			System.out.println("!!! all pass !!!");
+		}
+		
+		if (rapper1.equals("pass") || rapper2.equals("pass") || rapper3.equals("pass") || rapper4.equals("pass")) {
+			System.out.println("pass !!!");
+		}
+		
+		if (rapper1.equals("fail") && rapper2.equals("fail") && rapper3.equals("fail") && rapper4.equals("fail")) {
+			System.out.println("!!! your done !!!");
+		}
+		
+		/*
+		System.out.println("심사위원1의 평가는" + rapper1 + "입니다");
+		System.out.println("심사위원2의 평가는" + rapper2 + "입니다");
+		System.out.println("심사위원3의 평가는" + rapper3 + "입니다");
+		System.out.println("심사위원4의 평가는" + rapper4 + "입니다");
+		*/
+		
+	}
+	
+}
