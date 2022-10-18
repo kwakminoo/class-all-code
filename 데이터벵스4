@@ -1,0 +1,109 @@
+import csv
+import matplotlib.pyplot as plt
+import numpy as np
+
+f = open('age_0922.csv', 'r')
+data = csv.reader(f)
+header = next(data)
+
+result = []
+result2 = []
+result3 = []
+
+
+data = list(data)
+
+name = input('인구 구조가 알고 싶은 지역의 이름(읍면동 단위)을 입력하세요: ')
+
+for row in data:
+    if (name in row[0]):
+        for i in range(3, len(row)) :
+            result.append(int(row[i])/int(row[2].replace(',', '')))
+            b = np.array(result)
+
+z = 1000
+for row in data:    
+    if (row[2] != '0') and (name not in row[0]):
+    
+        for i in range(3, len(row)) :
+            result2.append(int(row[i].replace(',', ''))/int(row[2].replace(',', '')))
+        c = np.array(result2)
+
+        result2 = []
+
+        d = b - c
+        v = np.sum(d)
+
+        if v < z:
+            z = v
+            q = row[0]
+            w = c
+            
+            
+
+f.close()
+
+plt.plot(b, label='신도림')
+plt.plot(w, label='전라남도 화순군 한천면영외출장소(4679031500)')
+plt.rc('font', family='Malgun Gothic')
+plt.title('{} 지역의 인구 구조'.format(dong))
+plt.xlabel('나이')
+plt.ylabel('인구 비율')
+plt.legend()
+plt.grid(True)
+plt.show()
+---------------------------
+import csv
+import matplotlib.pyplot as plt
+import numpy as np
+
+f = open('age_0922.csv', 'r')
+data = csv.reader(f)
+header = next(data)
+
+result = []
+result2 = []
+result3 = []
+
+
+data = list(data)
+
+name = input('인구 구조가 알고 싶은 지역의 이름(읍면동 단위)을 입력하세요: ')
+
+for row in data:
+    if (name in row[0]):
+        for i in range(3, len(row)) :
+            result.append(int(row[i])/int(row[2].replace(',', '')))
+            b = np.array(result)
+
+z = 1000
+for row in data:    
+    if (row[2] != '0') and (name not in row[0]):
+    
+        for i in range(3, len(row)) :
+            result2.append(int(row[i].replace(',', ''))/int(row[2].replace(',', '')))
+        c = np.array(result2)
+
+        result2 = []
+
+        d = (b - c)*(b - c)
+        v = np.sum(d)
+
+        if v < z:
+            z = v
+            q = row[0]
+            w = c
+            
+            
+
+f.close()
+
+plt.plot(b, label='신도림')
+plt.plot(w, label='전라남도 화순군 한천면영외출장소(4679031500)')
+plt.rc('font', family='Malgun Gothic')
+plt.title('{} 지역의 인구 구조'.format(dong))
+plt.xlabel('나이')
+plt.ylabel('인구 비율')
+plt.legend()
+plt.grid(True)
+plt.show()
