@@ -137,3 +137,25 @@ public class test2 {
 
 }
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+import java.util.Scanner;
+
+public class test1 {
+	public static void main(String[] args) {
+		
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("인원 수를 입력하세요: ");
+		int p = scanner.nextInt();
+		double[] score = new double[p];
+		int sum = 0;
+		
+		for (int i = 0; i <= p-1; i ++) {
+			score[i] = scanner.nextDouble();
+			sum +=score[i];
+			
+			
+		}
+		System.out.printf("점수의 평균: %.2f",(double)sum/p);
+	}
+	
+}
